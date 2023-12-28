@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>选号器</title>
+<style type="text/css">
+.hh img {
+	width: 100%;
+	height: auto;
+}
+.hh{
+	display:flex;
+	justify-content: center;
+	align-items: center;
+}
+@media only screen and (max-width: 992px) {
+            /* 在屏幕宽度小于等于600px时应用的样式 */
+            .hh {
+                flex-direction: column; /* 垂直方向排列 */
+            }
+        }
+</style>
+<script language="javascript" type="text/javascript">
+	 var startTime = new Date().getTime();
+	var timer;
+	var images=["images/1.jpg","images/2.jpg","images/3.jpg","images/4.jpg","images/5.jpg"];
+	var num ;
+	function startScroll(){
+		num =Math.round(Math.random()*images.length-1);
+		document.getElementById("image").src = images[num];
+		var currentTime = new Date().getTime();
+		var s = Math.floor((currentTime - startTime) / 1000);
+		if(s<=2){
+			timer = setTimeout(startScroll, 60); 
+		}else{
+			stopScroll();
+		}
+	}
+	function stopScroll(){
+		document.getElementById("image").src = images[num];
+		clearTimeout(timer);
+	}
+	window.onload = function(){
+	        startScroll();
+	    }
+</script>
+</head>
+<body>
+<center>
+<form name="myForm">
+	<div class="hh">
+		<img src="images/1.jpg" alt="" id="image">
+	</div>
+</form>
+</center>
+</body>
+</html>
